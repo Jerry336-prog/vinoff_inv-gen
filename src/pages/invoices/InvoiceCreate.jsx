@@ -4,10 +4,10 @@ import InvoiceItemRow from "../../components/invoice/InvoiceItemrow";
 import { Link, useNavigate } from "react-router-dom";
 import { useInvoices } from "../../contexts/InvoiceContext";
 import { db } from "../../utilis/Firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { doc, getDoc } from "firebase/firestore";
+import { getDoc } from "firebase/firestore";
 
 export default function CreateInvoice() {
 
@@ -108,7 +108,7 @@ useEffect(() => {
       createdAt: serverTimestamp(),
     };
 
-    await addDoc(collection(db, "invoices"), newInvoice);
+    await setDoc(doc(db, "invoices", newInvoice.id), newInvoice);
 
     navigate("/invoicelist");
 
@@ -167,7 +167,7 @@ useEffect(() => {
               type="date"
               value={invoiceDate}
               onChange={(e) => setInvoiceDate(e.target.value)}
-              className="w-full px-3 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
+              className="w-full px-2 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
               border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 text-white"
             />
           </div>
