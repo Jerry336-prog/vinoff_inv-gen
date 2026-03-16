@@ -73,7 +73,7 @@ export default function InvoicePublic() {
   }
 
   const totalAmount = invoice.items?.reduce(
-    (sum, item) => sum + item.quantity * item.price,
+    (sum, item) => sum + Number(item.quantity) * Number(item.price),
     0
   );
 

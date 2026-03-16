@@ -99,7 +99,11 @@ useEffect(() => {
       id: "INV-" + Math.floor(Math.random() * 90000 + 10000),
       client: clientName,
       date: invoiceDate || new Date().toISOString().split("T")[0],
-      items,
+      items: items.map((item) => ({
+      ...item,
+      price: Number(item.price),
+      quantity: Number(item.quantity),
+    })),
       amount: invoiceTotal,
       status,
       userId: user.uid, // VERY IMPORTANT

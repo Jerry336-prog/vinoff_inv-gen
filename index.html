@@ -3,23 +3,44 @@
   <head>
     <meta charset="UTF-8" />
 
-    <!-- App favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.PNG" />
 
-    <!-- Mobile responsiveness -->
+    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO title -->
+    <!-- Title -->
     <title>Vinoff — Smart Invoice Generator</title>
 
-    <!-- Optional description (good for SEO and link previews) -->
-    <meta name="description" content="Create, manage and share invoices easily with Vinoff. Built for entrepreneurs and small businesses." />
+    <!-- SEO description -->
+    <meta
+      name="description"
+      content="Create, manage and share invoices easily with Vinoff. Built for entrepreneurs and small businesses."
+    />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Vinoff — Smart Invoice Generator" />
+    <meta
+      property="og:description"
+      content="Create professional invoices and share them instantly with clients."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="`https://vinoff-inv-gen.vercel.app/" />
+    <meta property="og:image" content="/preview.PNG" />
+
+    <!-- Twitter preview -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vinoff — Smart Invoice Generator" />
+    <meta
+      name="twitter:description"
+      content="Create professional invoices and share them instantly with clients."
+    />
+    <meta name="twitter:image" content="/preview.PNG" />
   </head>
 
   <body>
     <div id="root"></div>
 
-    <!-- React entry -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
