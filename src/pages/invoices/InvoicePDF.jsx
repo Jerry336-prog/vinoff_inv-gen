@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function InvoicePDF({ invoice, company }) {
+export default function InvoicePDF({ invoice }) {
   const totalAmount = invoice.items?.reduce(
     (sum, item) => sum + item.quantity * item.price,
     0
@@ -158,7 +158,7 @@ export default function InvoicePDF({ invoice, company }) {
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.companyName}>
-            {company?.companyName || "Your Company"} Invoice
+            {invoice?.companyName || "Your Company"} Invoice
           </Text>
           <View style={styles.row}>
             <Text style={styles.label}>Invoice ID: </Text>

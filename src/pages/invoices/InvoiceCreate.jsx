@@ -167,7 +167,7 @@ useEffect(() => {
               type="date"
               value={invoiceDate}
               onChange={(e) => setInvoiceDate(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
+              className="w-full px-3 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
               border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 text-white"
             />
           </div>
