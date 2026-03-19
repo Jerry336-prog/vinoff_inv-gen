@@ -109,6 +109,8 @@ useEffect(() => {
       userId: user.uid, // VERY IMPORTANT
       public: true, // VERY IMPORTANT
       companyName: company?.companyName || "",
+      phone: company?.phone || "",
+      address: company?.address || "",
       createdAt: serverTimestamp(),
     };
 

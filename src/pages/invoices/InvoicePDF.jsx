@@ -125,6 +125,25 @@ const styles = StyleSheet.create({
     color: "#f59e0b",
     fontWeight: "bold",
   },
+  footer: {
+  marginTop: 40,
+  paddingTop: 12,
+  borderTopWidth: 1,
+  borderTopColor: "#ffffff20",
+  alignItems: "center",
+  gap: 4,
+},
+
+footerText: {
+  fontSize: 10,
+  color: "#9ca3af",
+},
+
+footerCompany: {
+  fontSize: 11,
+  color: "#ffffff",
+  fontWeight: "bold",
+},
   statusPaid: { fontSize: 13, color: "#4ade80", fontWeight: "bold", marginTop: 4 },
   statusPending: { fontSize: 13, color: "#facc15", fontWeight: "bold", marginTop: 4 },
   statusOverdue: { fontSize: 13, color: "#f87171", fontWeight: "bold", marginTop: 4 },
@@ -211,6 +230,25 @@ export default function InvoicePDF({ invoice }) {
             ₦ {totalAmount?.toLocaleString()}
           </Text>
         </View>
+
+        <View style={styles.footer}>
+            <Text style={styles.footerCompany}>
+                {invoice.companyName || "Your Company"}
+             </Text>
+            {invoice.address && (
+              <Text style={styles.footerText}>
+                Address: {invoice?.address}
+              </Text>
+            )}
+            {invoice.phone && (
+              <Text style={styles.footerText}>
+                Phone: {invoice?.phone}
+              </Text>
+            )}
+            <Text style={styles.footerText}>
+               Thank you for doing business with us
+            </Text>
+          </View>
 
       </Page>
     </Document>

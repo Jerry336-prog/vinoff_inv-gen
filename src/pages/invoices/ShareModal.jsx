@@ -8,7 +8,7 @@ export default function ShareModal({ link, onClose }) {
     try {
       await navigator.clipboard.writeText(link);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // reset after 2s
+      setTimeout(() => setCopied(false), 100000); // reset after 100 seconds
     } catch (err) {
       console.error("Copy failed:", err);
     }

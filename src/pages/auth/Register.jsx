@@ -10,6 +10,8 @@ export default function Register() {
     fullName: "",
     companyName: "",
     email: "",
+    address: "",
+    phone: "",
     password: "",
     confirmPassword: ""
   });
@@ -25,6 +27,11 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    if (!/^\+?\d{10,15}$/.test(form.phone)) {
+      setError("Enter a valid phone number");
+      return;
+    }
 
     if (form.password !== form.confirmPassword) {
       setError("Passwords do not match!");
@@ -49,6 +56,8 @@ export default function Register() {
         fullName: form.fullName,
         companyName: form.companyName,
         email: form.email,
+        address: form.address,
+        phone: form.phone,
         createdAt: new Date()
       });
 
@@ -104,6 +113,27 @@ export default function Register() {
             name="email"
             placeholder="Email"
             value={form.email}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 rounded-xl bg-white/5 text-white border border-white/20 backdrop-blur-md focus:outline-none focus:border-amber-600 placeholder-gray-400"
+          />
+
+          <textarea
+             name="address"
+             placeholder="Company Address"
+             value={form.address}
+             onChange={handleChange}
+             required
+             rows={3}
+             className="w-full px-4 py-3 rounded-xl bg-white/5 text-white border border-white/20 backdrop-blur-md 
+             focus:outline-none focus:border-amber-600 placeholder-gray-400 resize-none"
+           />
+
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={form.phone}
             onChange={handleChange}
             required
             className="w-full px-4 py-3 rounded-xl bg-white/5 text-white border border-white/20 backdrop-blur-md focus:outline-none focus:border-amber-600 placeholder-gray-400"

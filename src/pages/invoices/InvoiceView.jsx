@@ -199,12 +199,6 @@ const total = invoice.items?.reduce((sum, item) => sum + item.price * item.quant
            className="px-5 py-3 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md hover:bg-yellow-500 hover:text-black transition-all duration-300 shadow-xl" > 
            Edit </Link> 
 
-          {/* <button 
-          onClick={() => window.print()} 
-          className="px-5 py-3 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md hover:bg-green-500 hover:text-black transition-all duration-300 shadow-xl" > 
-            Download 
-            </button>  */}
-
             <Link
              to={`/invoicepublic/${id}`}
              className="px-5 py-3 rounded-lg bg-white/10 border border-white/20
