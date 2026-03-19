@@ -18,7 +18,7 @@ export default function ForgotPassword() {
 
     // actionCodeSettings tells Firebase where to redirect after clicking link
     const actionCodeSettings = {
-      url: window.location.origin + "/resetpass", // must be authorized domain
+      url: "https://vinoff-inv-gen.vercel.app/resetpass", // must be authorized domain
       handleCodeInApp: true,
     };
 

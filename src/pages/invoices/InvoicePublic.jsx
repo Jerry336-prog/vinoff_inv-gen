@@ -16,6 +16,7 @@ export default function InvoicePublic() {
   const [downloading, setDownloading] = useState(false);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const [company, setCompany] = useState(null);
 
   const location = useLocation();
   const isPublic = new URLSearchParams(location.search).get("public") === "true";
@@ -206,6 +207,19 @@ export default function InvoicePublic() {
           )}
         </div>
         
+        {/* ✅ FOOTER (OPTION 3) */}
+          <div className="mt-12 pt-6 border-t border-white/10 text-center text-gray-400 text-sm">
+            <p className="font-semibold text-white">
+              {invoice?.companyName}
+            </p>
+
+            {invoice?.phone && <p>📞 {invoice.phone}</p>}
+            {invoice?.address && <p>📍 {invoice.address}</p>}
+            <p className="mt-2 text-xs">
+              Thank you for doing business with us 🙏
+            </p>
+          </div>
+
       </div>
     </div>
   );
