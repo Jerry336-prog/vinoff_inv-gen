@@ -171,7 +171,7 @@ depositAmount: {
 
 balanceAmount: {
   fontSize: 16,
-  color: "#f87171", // red-ish
+  color: "#f59e0b", // amber
   fontWeight: "bold",
 },
   statusPaid: { fontSize: 13, color: "#4ade80", fontWeight: "bold", marginTop: 4 },
