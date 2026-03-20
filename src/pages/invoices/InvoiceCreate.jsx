@@ -218,7 +218,7 @@ if (Object.keys(newErrors).length > 0) {
 
         <div className="mb-8">
           <label className="text-gray-300 mb-2 block font-semibold">
-             Created By
+             Prepared By
           </label>
          <input
            type="text"

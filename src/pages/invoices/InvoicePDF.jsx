@@ -283,7 +283,7 @@ export default function InvoicePDF({ invoice }) {
 
         <View style={{ marginTop: 10 }}>
           <Text style={styles.label}>
-             Created By: {invoice.createdBy || "-"}
+             Prepared By: {invoice.createdBy || "-"}
           </Text>
         </View>
 

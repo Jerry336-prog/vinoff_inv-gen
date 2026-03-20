@@ -274,9 +274,9 @@ const [balance, setBalance] = useState(0);
   />
 </div>
 
-{/* Created By */}
+{/* Prepared By */}
 <div className="mt-6">
-  <label className="text-gray-300">Created By</label>
+    <label className="text-gray-300">Prepared By</label>
   <input
     value={createdBy}
     onChange={(e) => setCreatedBy(e.target.value)}

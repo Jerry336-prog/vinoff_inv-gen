@@ -214,7 +214,7 @@ const total = invoice.items?.reduce((sum, item) => sum + item.price * item.quant
 )}
   
       <p className="text-gray-400 mt-4 text-sm">
-          Created by: <span className="text-white">{invoice.createdBy}</span>
+          Prepared by: <span className="text-white">{invoice.createdBy}</span>
        </p>
 
  <div className="flex text-center flex-col sm:flex-row gap-4 mt-10"> 

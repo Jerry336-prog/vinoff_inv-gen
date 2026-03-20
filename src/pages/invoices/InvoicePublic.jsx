@@ -196,7 +196,7 @@ export default function InvoicePublic() {
     )}
 
     <p className="text-gray-400 mt-4 text-sm">
-       Created by: <span className="text-white">{invoice.createdBy}</span>
+       Prepared by: <span className="text-white">{invoice.createdBy}</span>
       </p>
 
         {/* Action Buttons */}
