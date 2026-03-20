@@ -20,6 +20,9 @@ const [clientAddress, setClientAddress] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [deposit, setDeposit] = useState(0);
+const [createdBy, setCreatedBy] = useState("");
+const [balance, setBalance] = useState(0);
 
   // Fetch invoice DIRECTLY from Firestore
   useEffect(() => {
@@ -42,6 +45,8 @@ const [clientAddress, setClientAddress] = useState("");
         setInvoiceDate(data.date || "");
         setStatus(data.status || "Pending");
         setItems(data.items || []);
+        setDeposit(data.deposit || 0);
+        setCreatedBy(data.createdBy || "");
 
         setLoading(false);
       } catch (err) {
@@ -53,6 +58,27 @@ const [clientAddress, setClientAddress] = useState("");
 
     fetchInvoice();
   }, [id]);
+
+// TOTAL
+  const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+    useEffect(() => {
+  if (status === "Paid") {
+    setDeposit(total);
+    setBalance(0);
+  } else {
+    setBalance(Math.max(total - deposit, 0));
+  }
+}, [total, deposit, status]);
+
+  useEffect(() => {
+  if (status === "Paid") {
+    setDeposit(total);
+    setBalance(0);
+  } else {
+    setBalance(Math.max(total - deposit, 0));
+  }
+}, [total, deposit, status]);
 
   // LOADING SCREEN
   if (loading) {
@@ -93,8 +119,7 @@ const [clientAddress, setClientAddress] = useState("");
     setItems(items.filter((i) => i.id !== itemId));
   };
 
-  // TOTAL
-  const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
 
   // SUBMIT UPDATED INVOICE
   const handleSubmit = async (e) => {
@@ -106,6 +131,9 @@ const [clientAddress, setClientAddress] = useState("");
   status,
   items,
   amount: total,
+  deposit,
+  balance,
+  createdBy,
 };
 
     await updateInvoice(id, updatedInvoice);
@@ -224,6 +252,38 @@ const [clientAddress, setClientAddress] = useState("");
             ₦{total.toLocaleString()}
           </p>
         </div>
+
+{/* Deposit */}
+<div className="mt-6">
+  <label className="text-gray-300">Deposit</label>
+  <input
+    type="number"
+    value={deposit}
+    onChange={(e) => setDeposit(Number(e.target.value))}
+    className="w-full p-3 rounded bg-white/10 border border-white/20"
+  />
+</div>
+
+<div className="mt-6">
+  <label className="text-gray-300">Balance</label>
+  <input
+    type="number"
+    value={balance}
+    readOnly
+    className="w-full p-3 rounded bg-white/10 border border-white/20 text-gray-200"
+  />
+</div>
+
+{/* Created By */}
+<div className="mt-6">
+  <label className="text-gray-300">Created By</label>
+  <input
+    value={createdBy}
+    onChange={(e) => setCreatedBy(e.target.value)}
+    className="w-full p-3 rounded bg-white/10 border border-white/20"
+  />
+</div>
+
 
         {/* STATUS */}
         <div className="mb-6 mt-6">

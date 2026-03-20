@@ -21,6 +21,7 @@ useEffect(() => {
 }, [user, navigate]);
  
 const [company, setCompany] = useState(null);
+const [deposit, setDeposit] = useState("");
 
 useEffect(() => {
   if (!user) return;
@@ -40,6 +41,8 @@ useEffect(() => {
   const [clientName, setClientName] = useState("");
   const [invoiceDate, setInvoiceDate] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [createdBy, setCreatedBy] = useState("");
+  const [errors, setErrors] = useState({});
 
   // INVOICE STATUS
   const [status, setStatus] = useState("Pending");
@@ -75,21 +78,43 @@ useEffect(() => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  // Calculate balance after deposit
+  const depositAmount = Number(deposit) || 0;
+const balance =
+  status === "Paid" ? 0 : Math.max(invoiceTotal - depositAmount, 0);
 
+ useEffect(() => {
+  if (status === "Paid") {
+    setDeposit(invoiceTotal); // auto-fill deposit
+  }
+}, [status, invoiceTotal]);
 
   // HANDLE SUBMIT
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!clientName) {
-    alert("Client name is required.");
-    return;
-  }
+  const newErrors = {};
 
-  if (items.length === 0) {
-    alert("Please add at least 1 invoice item.");
-    return;
-  }
+if (!clientName.trim()) {
+  newErrors.clientName = "Client name is required";
+}
+
+if (!createdBy.trim()) {
+  newErrors.createdBy = "Please enter who created this invoice";
+}
+
+if (items.length === 0) {
+  newErrors.items = "Please add at least 1 invoice item";
+}
+
+if (depositAmount > invoiceTotal) {
+  newErrors.deposit = "Deposit cannot be greater than total amount";
+}
+
+if (Object.keys(newErrors).length > 0) {
+  setErrors(newErrors);
+  return;
+}
 
   if (isSubmitting) return;
   setIsSubmitting(true);
@@ -99,12 +124,15 @@ useEffect(() => {
       id: "INV-" + Math.floor(Math.random() * 90000 + 10000),
       client: clientName,
       date: invoiceDate || new Date().toISOString().split("T")[0],
+      createdBy: createdBy.trim(),
       items: items.map((item) => ({
       ...item,
       price: Number(item.price),
       quantity: Number(item.quantity),
     })),
       amount: invoiceTotal,
+      deposit: depositAmount,
+      balance: balance,
       status,
       userId: user.uid, // VERY IMPORTANT
       public: true, // VERY IMPORTANT
@@ -157,12 +185,21 @@ useEffect(() => {
             <input
               type="text"
               value={clientName}
-              onChange={(e) => setClientName(e.target.value)}
+              onChange={(e) => { setClientName(e.target.value);
+                setErrors((prev) => ({ ...prev, clientName: "" }));
+              }}
+
               placeholder="Enter client name"
               className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
               border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 
               placeholder-gray-400"
             />
+
+            {errors.clientName && (
+             <p className="text-red-400 text-sm mt-1">
+              {errors.clientName}
+            </p>
+            )}
           </div>
 
           <div>
@@ -179,11 +216,39 @@ useEffect(() => {
           </div>
         </div>
 
+        <div className="mb-8">
+          <label className="text-gray-300 mb-2 block font-semibold">
+             Created By
+          </label>
+         <input
+           type="text"
+           value={createdBy}
+           onChange={(e) => { setCreatedBy(e.target.value);
+             setErrors((prev) => ({ ...prev, createdBy: "" }));
+           }}
+           placeholder="Enter staff name"
+           className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
+           border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 
+         placeholder-gray-400"
+        />
+
+        {errors.createdBy && (
+          <p className="text-red-400 text-sm mt-1">
+         {errors.createdBy}
+       </p>
+        )}
+      </div>
+
         {/* ITEMS */}
         <h2 className="text-2xl font-bold text-amber-500 mb-4">
           Invoice Items
         </h2>
-
+         
+         {errors.items && (
+          <p className="text-red-400 text-sm mb-3">
+           {errors.items}
+          </p>
+    )}
         {/* ITEM LIST */}
        <div className="mb-8">
 
@@ -236,6 +301,46 @@ useEffect(() => {
             ₦{invoiceTotal.toLocaleString()}
           </p>
         </div>
+
+        {/* DEPOSIT */}
+         <div className="mt-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6">
+           <h3 className="text-xl font-bold text-amber-400 mb-2">Deposit</h3>
+
+             <input
+                type="number"
+                value={deposit}
+                onChange={(e) => { setDeposit(e.target.value);
+                  setErrors((prev) => ({ ...prev, deposit: "" }));
+                }}
+                placeholder="Enter deposit amount"
+                disabled={status === "Paid"}
+                className={`w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
+                border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 
+              placeholder-gray-400 text-white 
+               ${errors.deposit ? "border-red-500" : "border-white/20"} 
+              disabled:opacity-50 disabled:cursor-not-allowed`}
+             />
+             {errors.deposit && (
+               <p className="text-red-400 text-sm mt-2">
+                 {errors.deposit}
+              </p>
+            )}
+
+            {status === "Paid" && (
+              <p className="text-green-400 text-sm mt-2">
+                Invoice is marked as paid — deposit locked
+              </p>
+      )}
+           </div>
+
+           {/* BALANCE */}
+            <div className="mt-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6">
+             <h3 className="text-xl font-bold text-amber-400">Balance</h3>
+
+            <p className="text-3xl font-extrabold text-amber-500 mt-2">
+               ₦{balance > 0 ? balance.toLocaleString() : "0"}
+            </p>
+          </div>
 
         {/* STATUS */}
         <div className="mb-6 mt-6">

@@ -192,6 +192,31 @@ const total = invoice.items?.reduce((sum, item) => sum + item.price * item.quant
       </div>
     </div>
 
+    {/* Deposit & Balance */}
+       {invoice.status !== "Paid" && (
+   <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+    
+    <div className="bg-white/10 border border-white/20 p-5 rounded-xl">
+      <h3 className="text-lg text-gray-300">Deposit</h3>
+      <p className="text-2xl font-bold text-amber-400">
+        ₦{invoice.deposit?.toLocaleString() || "0"}
+      </p>
+    </div>
+
+    <div className="bg-white/10 border border-white/20 p-5 rounded-xl">
+      <h3 className="text-lg text-gray-300">Balance</h3>
+      <p className="text-2xl font-bold text-amber-500">
+        ₦{invoice.balance?.toLocaleString() || "0"}
+      </p>
+    </div>
+
+  </div>
+)}
+  
+      <p className="text-gray-400 mt-4 text-sm">
+          Created by: <span className="text-white">{invoice.createdBy}</span>
+       </p>
+
  <div className="flex text-center flex-col sm:flex-row gap-4 mt-10"> 
 
           <Link 

@@ -144,6 +144,36 @@ footerCompany: {
   color: "#ffffff",
   fontWeight: "bold",
 },
+
+subTotalBox: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  backgroundColor: "#ffffff10",
+  borderRadius: 8,
+  padding: 14,
+  marginTop: 10,
+  borderWidth: 1,
+  borderColor: "#ffffff20",
+},
+
+subTotalLabel: {
+  fontSize: 12,
+  color: "#e5e7eb",
+  fontWeight: "bold",
+},
+
+depositAmount: {
+  fontSize: 16,
+  color: "#38bdf8", // blue-ish
+  fontWeight: "bold",
+},
+
+balanceAmount: {
+  fontSize: 16,
+  color: "#f87171", // red-ish
+  fontWeight: "bold",
+},
   statusPaid: { fontSize: 13, color: "#4ade80", fontWeight: "bold", marginTop: 4 },
   statusPending: { fontSize: 13, color: "#facc15", fontWeight: "bold", marginTop: 4 },
   statusOverdue: { fontSize: 13, color: "#f87171", fontWeight: "bold", marginTop: 4 },
@@ -231,24 +261,50 @@ export default function InvoicePDF({ invoice }) {
           </Text>
         </View>
 
+   {invoice.status !== "Paid" && (
+  <>
+    {/* Deposit */}
+    <View style={styles.subTotalBox}>
+      <Text style={styles.subTotalLabel}>Deposit</Text>
+      <Text style={styles.depositAmount}>
+        ₦ {invoice.deposit?.toLocaleString() || "0"}
+      </Text>
+    </View>
+
+    {/* Balance */}
+    <View style={styles.subTotalBox}>
+      <Text style={styles.subTotalLabel}>Balance</Text>
+      <Text style={styles.balanceAmount}>
+        ₦ {invoice.balance?.toLocaleString() || "0"}
+      </Text>
+    </View>
+  </>
+)}
+
+        <View style={{ marginTop: 10 }}>
+          <Text style={styles.label}>
+             Created By: {invoice.createdBy || "-"}
+          </Text>
+        </View>
+
         <View style={styles.footer}>
-            <Text style={styles.footerCompany}>
-                {invoice.companyName || "Your Company"}
-             </Text>
-            {invoice.address && (
-              <Text style={styles.footerText}>
-                Address: {invoice?.address}
-              </Text>
-            )}
-            {invoice.phone && (
-              <Text style={styles.footerText}>
-                Phone: {invoice?.phone}
-              </Text>
-            )}
+          <Text style={styles.footerCompany}>
+            {invoice.companyName || "Your Company"}
+          </Text>
+          {invoice.address && (
             <Text style={styles.footerText}>
-               Thank you for doing business with us
+              Address: {invoice?.address}
             </Text>
-          </View>
+          )}
+          {invoice.phone && (
+            <Text style={styles.footerText}>
+              Phone: {invoice?.phone}
+            </Text>
+          )}
+          <Text style={styles.footerText}>
+            Thank you for the patronage!
+          </Text>
+        </View>
 
       </Page>
     </Document>
