@@ -164,14 +164,14 @@ subTotalLabel: {
 },
 
 depositAmount: {
-  fontSize: 16,
+  fontSize: 18,
   color: "#38bdf8", // blue-ish
   fontWeight: "bold",
 },
 
 balanceAmount: {
   fontSize: 16,
-  color: "#f59e0b", // amber
+  color: "#f87171", // red-ish
   fontWeight: "bold",
 },
   statusPaid: { fontSize: 13, color: "#4ade80", fontWeight: "bold", marginTop: 4 },
