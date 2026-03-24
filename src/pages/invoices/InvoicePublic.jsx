@@ -241,7 +241,7 @@ export default function InvoicePublic() {
             {invoice?.phone && <p>📞 {invoice.phone}</p>}
             {invoice?.address && <p>📍 {invoice.address}</p>}
             <p className="mt-2 text-xs">
-              Thank you for doing business with us 🙏
+              Thanks for your patronage🙏
             </p>
 
             <p className="mt-4 text-xs text-gray-500">

@@ -302,7 +302,7 @@ export default function InvoicePDF({ invoice }) {
             </Text>
           )}
           <Text style={styles.footerText}>
-            Thank you for the patronage!
+            Thanks for your patronage!
           </Text>
         </View>
 
