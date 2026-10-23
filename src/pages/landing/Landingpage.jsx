@@ -1,141 +1,22 @@
-import React from "react";
+import { createElement } from "react";
 import { Link } from "react-router-dom";
-
+import { FileText, ArrowUpRight, ArrowRight, Check, BarChart3, Send, Download } from "lucide-react";
+const features = [
+  [FileText, 'Look the part. Every time.', 'Create clear, professional invoices with your business details, itemized services, and payment information.'],
+  [BarChart3, 'Know where things stand.', 'See your paid, pending, and overdue invoices together. Less searching, more clarity.'],
+  [Send, 'From your desk to their inbox.', 'Share an invoice link with your client or download a polished PDF, ready to send.'],
+];
 export default function Landing() {
-  return (
-    <div className="min-h-screen bg-slate-900 text-white">
-
-      {/* NAVBAR */}
-      <nav className="flex justify-between items-center px-8 py-6">
-        <h1 className="text-2xl font-extrabold text-amber-600">
-          Vinoff
-        </h1>
-
-        <div className="space-x-2">
-          <Link
-            to="/login"
-            className="px-3 py-2 rounded-xl bg-white/10 border border-white/20 backdrop-blur-xl hover:bg-white/20 transition"
-          >
-            Login
-          </Link>
-
-          <Link
-            to="/register"
-            className="px-3 py-2 rounded-xl bg-amber-600 text-black font-semibold hover:bg-amber-500 transition"
-          >
-            Get Started
-          </Link>
-        </div>
-      </nav>
-
-      {/* HERO SECTION */}
-      <section className="flex flex-col items-center justify-center text-center px-6 mt-20">
-
-        <div className="max-w-4xl">
-          <h2 className="text-5xl md:text-6xl font-extrabold leading-tight">
-            Create Professional Invoices <br />
-            <span className="text-amber-600">
-              In Seconds
-            </span>
-          </h2>
-
-          <p className="text-gray-400 mt-6 text-lg">
-            Vinoff helps entrepreneurs and freelancers generate,
-            track and manage invoices with real-time updates,
-            beautiful designs and instant PDF downloads.
-          </p>
-
-          <div className="mt-10 flex justify-center gap-6 flex-wrap">
-            <Link
-              to="/register"
-              className="px-8 py-4 rounded-2xl bg-amber-600 text-black font-bold text-lg shadow-xl hover:bg-amber-500 transition"
-            >
-              Start Free
-            </Link>
-
-            <Link
-              to="/login"
-              className="px-8 py-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-xl text-white text-lg hover:bg-white/20 transition"
-            >
-              Login
-            </Link>
-          </div>
-        </div>
-
-      </section>
-
-      {/* FEATURES SECTION */}
-      <section className="mt-28 px-8 pb-20">
-        <h3 className="text-3xl font-bold text-center mb-12">
-          Why Choose Vinoff?
-        </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-          {/* FEATURE 1 */}
-          <div className="p-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl">
-            <h4 className="text-xl font-bold text-amber-600 mb-4">
-              Real-Time Dashboard
-            </h4>
-            <p className="text-gray-400">
-              Track paid, pending and overdue invoices instantly.
-              Updates live as your business grows.
-            </p>
-          </div>
-
-          {/* FEATURE 2 */}
-          <div className="p-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl">
-            <h4 className="text-xl font-bold text-amber-600 mb-4">
-              Professional PDF Generator
-            </h4>
-            <p className="text-gray-400">
-              Download branded A4 invoices with logos,
-              paid stamps and custom colors.
-            </p>
-          </div>
-
-          {/* FEATURE 3 */}
-          <div className="p-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl">
-            <h4 className="text-xl font-bold text-amber-600 mb-4">
-              Built for Entrepreneurs
-            </h4>
-            <p className="text-gray-400">
-              Designed to help you look credible,
-              professional and ready for serious clients.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-      <section className="text-center pb-20 px-6">
-        <div className="max-w-3xl mx-auto p-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl">
-
-          <h3 className="text-3xl font-bold mb-6">
-            Ready to Simplify Your Invoicing?
-          </h3>
-
-          <p className="text-gray-400 mb-8">
-            Join Vinoff today and start generating invoices
-            that make you look like a pro.
-          </p>
-
-          <Link
-            to="/register"
-            className="px-6 py-4 rounded-2xl bg-amber-600 text-black font-bold lg:text-lg text-md hover:bg-amber-500 transition"
-          >
-            Create Free Account
-          </Link>
-
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Vinoff. All rights reserved.
-      </footer>
-
-    </div>
-  );
+ return <div className="landing">
+  <nav className="landing-nav"><Link to="/" className="brand"><span className="brand-icon"><FileText size={22}/></span>vinoff<span className="brand-dot">.</span></Link><div className="landing-nav-links"><a href="#features">Features</a><a href="#how-it-works">How it works</a></div><div className="flex items-center gap-5"><Link to="/login" className="login-link">Log in</Link><Link to="/register" className="primary-button">Get started <ArrowUpRight size={16}/></Link></div></nav>
+  <main>
+   <section className="hero"><div className="hero-copy"><span className="eyebrow"><span className="little-dot"/> INVOICING, WITHOUT THE BUSYWORK</span><h1>Less paperwork.<br/>More <span>possibility.</span></h1><p>Give your hard work the professional finish it deserves. Create, share, and manage beautiful invoices—all in one simple workspace.</p><div className="hero-actions"><Link to="/register" className="primary-button">Create your first invoice <ArrowRight size={18}/></Link><a href="#how-it-works" className="text-button">See how it works <ArrowUpRight size={17}/></a></div><div className="hero-checks"><span><Check size={15}/> Free to get started</span><span><Check size={15}/> Built for your business</span></div></div>
+   <div className="hero-visual" aria-label="Illustrative invoice preview"><div className="preview-caption"><span className="little-dot"/> A GOOD IMPRESSION, DELIVERED.</div><div className="invoice-preview"><div className="preview-heading"><span className="mini-brand"><FileText size={18}/> Studio & Co.</span><span className="preview-tag">INVOICE</span></div><div className="preview-title"><div><span className="eyebrow">BILLED TO</span><h3>Alex Morgan</h3><p>alex@example.com</p></div><div className="text-right"><strong>INV–0012</strong><p>October 23, 2026</p></div></div><div className="preview-table"><div><span>Description</span><span>Amount</span></div><div><strong>Brand identity design</strong><strong>₦180,000</strong></div><div><strong>Website consultation</strong><strong>₦70,000</strong></div></div><div className="preview-total"><span>Total amount</span><strong>₦250,000<span>.00</span></strong></div><div className="preview-footer"><span>Thank you for your business.</span><Download size={17}/></div></div><div className="floating-receipt"><span className="receipt-icon"><Check size={21}/></span><div><strong>Beautifully organized.</strong><p>Every invoice. One workspace.</p></div></div><span className="example-label">An example of your next great invoice</span></div>
+   </section>
+   <section className="audience-strip"><span>YOUR WORK. YOUR BUSINESS. YOUR WAY.</span><p>For freelancers <span>✦</span> Independent professionals <span>✦</span> Growing businesses</p></section>
+   <section className="features-section" id="features"><div className="section-heading"><span className="eyebrow">SMALL DETAILS. BIG DIFFERENCE.</span><h2>Everything you need.<br/>Room to focus on what matters.</h2><p>Bring a little more order to your everyday invoicing.</p></div><div className="feature-grid">{features.map(([Icon,title,copy],i)=><article className="feature-card" key={title}><div className="feature-number">0{i+1}<span>{createElement(Icon, { size: 23 })}</span></div><h3>{title}</h3><p>{copy}</p></article>)}</div></section>
+   <section className="how-section" id="how-it-works"><div><span className="eyebrow">FROM DONE TO SENT</span><h2>A simpler way<br/>to wrap up your work.</h2><Link to="/register" className="text-button">Let’s get started <ArrowRight size={18}/></Link></div><div className="steps">{[['Make it yours','Add your business details and tell your client who’s behind the work.'],['Put it on paper','Add your client, line items, and amounts. Keep every detail clear.'],['Send it on its way','Share a link or download your invoice as a PDF. Track its status in your dashboard.']].map(([title,copy],i)=><div className="step" key={title}><span>{i+1}</span><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div></section>
+   <section className="landing-cta"><span className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</span><h2>Good work.<br/>Great first impression.</h2><p>Make the business side of your business feel a little easier.</p><Link to="/register" className="primary-button">Get started with Vinoff <ArrowUpRight size={18}/></Link></section>
+  </main><footer className="landing-footer"><Link to="/" className="brand">vinoff.</Link><span>Less admin. More possibility.</span><p>© {new Date().getFullYear()} Vinoff. All rights reserved.</p></footer>
+ </div>;
 }

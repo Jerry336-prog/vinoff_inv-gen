@@ -1,54 +1,22 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { createElement } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
+import { LayoutDashboard, Files, Plus, LogOut, ArrowUpRight } from "lucide-react";
 
-export default function Sidebar() {
-
+export default function Sidebar({ onNavigate }) {
   const navigate = useNavigate();
-  const auth = getAuth();
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
+  const logout = async () => {
+    try { await signOut(getAuth()); navigate('/login'); }
+    catch (error) { console.error('Logout error:', error); }
   };
-
-  return (
-    <div>
-      <nav className="space-y-4">
-
-        <Link
-          to="/dashboard"
-          className="block px-4 py-2 rounded-xl text-white bg-white/10 border border-white/20 hover:bg-amber-600 hover:text-black transition"
-        >
-          Dashboard
-        </Link>
-
-        <Link
-          to="/invoicelist"
-          className="block px-4 py-2 rounded-xl text-gray-300 hover:bg-white/10 hover:text-amber-600 transition"
-        >
-          Invoices
-        </Link>
-
-        <Link
-          to="/invoicecreate"
-          className="block px-4 py-2 rounded-xl text-gray-300 hover:bg-white/10 hover:text-amber-600 transition"
-        >
-          Create Invoice
-        </Link>
-
-        <button
-          onClick={handleLogout}
-          className="block px-4 py-2 rounded-xl text-red-400 hover:bg-red-500 hover:text-white transition"
-        >
-          Logout
-        </button>
-
-      </nav>
-    </div>
-  );
+  return <div className="sidebar-content">
+    <p className="nav-caption">WORKSPACE</p>
+    <nav aria-label="Workspace navigation">
+      {[["/dashboard", LayoutDashboard, "Overview"], ["/invoicelist", Files, "Invoices"], ["/invoicecreate", Plus, "Create invoice"]].map(([to, Icon, label]) =>
+        <NavLink key={to} to={to} onClick={onNavigate} className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>{createElement(Icon, { size: 19 })}{label}</NavLink>
+      )}
+    </nav>
+    <div className="sidebar-bottom"><div className="workspace-note"><span className="eyebrow">LESS ADMIN. MORE BUSINESS.</span><p>Your next invoice starts here.</p><NavLink to="/invoicecreate" onClick={onNavigate}>Create an invoice <ArrowUpRight size={16}/></NavLink></div>
+    <button onClick={logout} className="nav-item logout"><LogOut size={18}/> Sign out</button></div>
+  </div>;
 }

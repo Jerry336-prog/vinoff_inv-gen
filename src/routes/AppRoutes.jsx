@@ -1,3 +1,4 @@
+import MainLayout from "../layouts/MainLayout";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -64,7 +65,7 @@ function AppRoutes() {
           path="/invoicelist"
           element={
             <ProtectedRoute>
-              <InvoiceList />
+              <MainLayout><InvoiceList /></MainLayout>
             </ProtectedRoute>
           }
         />
@@ -73,7 +74,7 @@ function AppRoutes() {
           path="/invoicecreate"
           element={
             <ProtectedRoute>
-              <CreateInvoice />
+              <MainLayout><CreateInvoice /></MainLayout>
             </ProtectedRoute>
           }
         />
@@ -82,7 +83,7 @@ function AppRoutes() {
           path="/invoiceedit/:id"
           element={
             <ProtectedRoute>
-              <InvoiceEdit />
+              <MainLayout><InvoiceEdit /></MainLayout>
             </ProtectedRoute>
           }
         />
@@ -91,7 +92,7 @@ function AppRoutes() {
           path="/invoiceview/:id"
           element={
             <ProtectedRoute>
-              <InvoiceView />
+              <MainLayout><InvoiceView /></MainLayout>
             </ProtectedRoute>
           }
         />

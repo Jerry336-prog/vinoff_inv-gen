@@ -55,92 +55,92 @@ export default function CustomerEdit() {
 
   if (loading) {
     return (
-      <p className="text-center mt-20 text-gray-300">Loading customer data...</p>
+      <p className="text-center mt-20 text-slate-600">Loading customer data...</p>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 px-4 py-10 flex justify-center">
+    <div className="min-h-screen bg-slate-50 px-4 py-10 flex justify-center">
       <div className="w-full max-w-2xl">
-        
+
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="mb-6 px-5 py-2 rounded-xl 
-          bg-white/10 backdrop-blur-lg border border-white/20 
-          text-white hover:bg-white/20 transition"
+          className="mb-6 px-5 py-2 rounded-xl
+          bg-white  border border-slate-200
+          text-slate-900 hover:bg-slate-100 transition"
         >
           ← Back
         </button>
 
         <form
           onSubmit={handleUpdate}
-          className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-xl p-8"
+          className="bg-white  border border-slate-200 rounded-2xl shadow-sm p-8"
         >
-          <h1 className="text-3xl font-bold text-[#b8860b] mb-6">
+          <h1 className="text-3xl font-bold text-teal-700 mb-6">
             Edit Customer
           </h1>
 
           {/* Input Fields */}
-          <div className="grid grid-cols-1 gap-5 text-white">
+          <div className="grid grid-cols-1 gap-5 text-slate-900">
 
             <div>
-              <label className="text-sm text-gray-300">Full Name</label>
+              <label className="text-sm text-slate-600">Full Name</label>
               <input
                 type="text"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20
-                  backdrop-blur-lg focus:outline-none focus:border-[#b8860b] text-white"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200
+                   focus:outline-none focus:border-teal-700 text-slate-900"
                 required
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-300">Email Address</label>
+              <label className="text-sm text-slate-600">Email Address</label>
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20
-                  backdrop-blur-lg focus:outline-none focus:border-[#b8860b] text-white"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200
+                   focus:outline-none focus:border-teal-700 text-slate-900"
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-300">Phone Number</label>
+              <label className="text-sm text-slate-600">Phone Number</label>
               <input
                 type="text"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20
-                  backdrop-blur-lg focus:outline-none focus:border-[#b8860b] text-white"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200
+                   focus:outline-none focus:border-teal-700 text-slate-900"
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-300">Address</label>
+              <label className="text-sm text-slate-600">Address</label>
               <textarea
                 name="address"
                 value={form.address}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20
-                  backdrop-blur-lg focus:outline-none focus:border-[#b8860b] text-white h-24"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200
+                   focus:outline-none focus:border-teal-700 text-slate-900 h-24"
               ></textarea>
             </div>
 
             <div>
-              <label className="text-sm text-gray-300">Business Name</label>
+              <label className="text-sm text-slate-600">Business Name</label>
               <input
                 type="text"
                 name="businessName"
                 value={form.company}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20
-                  backdrop-blur-lg focus:outline-none focus:border-[#b8860b] text-white"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200
+                   focus:outline-none focus:border-teal-700 text-slate-900"
               />
             </div>
           </div>
@@ -152,9 +152,9 @@ export default function CustomerEdit() {
             <button
               type="button"
               onClick={() => navigate(`/customerdetail/${id}`)}
-              className="px-6 py-3 rounded-xl 
-              bg-white/10 border border-white/20 text-white
-              backdrop-blur-lg shadow-md hover:bg-white/20 transition"
+              className="px-6 py-3 rounded-xl
+              bg-white border border-slate-200 text-slate-900
+               shadow-md hover:bg-slate-100 transition"
             >
               Cancel
             </button>
@@ -162,9 +162,9 @@ export default function CustomerEdit() {
             {/* Update */}
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl 
-              bg-[#b8860b]/30 border border-[#b8860b]/40 text-[#b8860b]
-              backdrop-blur-lg shadow-md hover:bg-[#b8860b]/50 transition font-semibold"
+              className="px-6 py-3 rounded-xl
+              bg-teal-700/30 border border-teal-700/40 text-teal-700
+               shadow-md hover:bg-teal-700/50 transition font-semibold"
             >
               Update Customer
             </button>

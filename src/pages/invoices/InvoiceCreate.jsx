@@ -19,7 +19,7 @@ useEffect(() => {
     navigate("/login");
   }
 }, [user, navigate]);
- 
+
 const [company, setCompany] = useState(null);
 const [deposit, setDeposit] = useState("");
 
@@ -155,17 +155,17 @@ if (Object.keys(newErrors).length > 0) {
 
 
   return (
-    <div className="min-h-screen p-6 md:p-10 bg-slate-900 text-white">
+    <div className="min-h-screen p-6 md:p-10 bg-slate-50 text-slate-900">
       {/* PAGE HEADER */}
       <div className="flex justify-between items-center mb-10">
-        <h1 className="text-4xl font-extrabold text-amber-600 drop-shadow-lg">
+        <h1 className="text-4xl font-bold text-teal-700 ">
           Create Invoice
         </h1>
 
         <Link
           to="/invoicelist"
-          className="px-4 py-2 rounded-xl bg-white/10 border border-white/20 
-          backdrop-blur-lg hover:bg-amber-600 hover:text-black transition-all duration-300 shadow-xl"
+          className="px-4 py-2 rounded-xl bg-white border border-slate-200
+           hover:bg-teal-700 hover:text-white transition-all duration-300 shadow-sm"
         >
           ←
         </Link>
@@ -174,12 +174,12 @@ if (Object.keys(newErrors).length > 0) {
       {/* FORM WRAPPER */}
       <form
         onSubmit={handleSubmit}
-        className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 md:p-10 shadow-xl"
+        className="bg-white  border border-slate-200 rounded-2xl p-6 md:p-10 shadow-sm"
       >
         {/* CLIENT & DATE */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           <div>
-            <label className="text-gray-300 mb-2 block font-semibold">
+            <label className="text-slate-600 mb-2 block font-semibold">
               Client Name
             </label>
             <input
@@ -190,34 +190,34 @@ if (Object.keys(newErrors).length > 0) {
               }}
 
               placeholder="Enter client name"
-              className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
-              border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 
+              className="w-full px-4 py-3 rounded-xl bg-white
+              border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-700
               placeholder-gray-400"
             />
 
             {errors.clientName && (
-             <p className="text-red-400 text-sm mt-1">
+             <p className="text-red-600 text-sm mt-1">
               {errors.clientName}
             </p>
             )}
           </div>
 
           <div>
-            <label className="text-gray-300 mb-2 block font-semibold">
+            <label className="text-slate-600 mb-2 block font-semibold">
               Invoice Date
             </label>
             <input
               type="date"
               value={invoiceDate}
               onChange={(e) => setInvoiceDate(e.target.value)}
-              className="w-full px-2 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
-              border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 text-white"
+              className="w-full px-2 py-3 rounded-xl bg-white
+              border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-700 text-slate-900"
             />
           </div>
         </div>
 
         <div className="mb-8">
-          <label className="text-gray-300 mb-2 block font-semibold">
+          <label className="text-slate-600 mb-2 block font-semibold">
              Prepared By
           </label>
          <input
@@ -227,25 +227,25 @@ if (Object.keys(newErrors).length > 0) {
              setErrors((prev) => ({ ...prev, createdBy: "" }));
            }}
            placeholder="Enter staff name"
-           className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
-           border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 
+           className="w-full px-4 py-3 rounded-xl bg-white
+           border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-700
          placeholder-gray-400"
         />
 
         {errors.createdBy && (
-          <p className="text-red-400 text-sm mt-1">
+          <p className="text-red-600 text-sm mt-1">
          {errors.createdBy}
        </p>
         )}
       </div>
 
         {/* ITEMS */}
-        <h2 className="text-2xl font-bold text-amber-500 mb-4">
+        <h2 className="text-2xl font-bold text-teal-700 mb-4">
           Invoice Items
         </h2>
-         
+
          {errors.items && (
-          <p className="text-red-400 text-sm mb-3">
+          <p className="text-red-600 text-sm mb-3">
            {errors.items}
           </p>
     )}
@@ -253,7 +253,7 @@ if (Object.keys(newErrors).length > 0) {
        <div className="mb-8">
 
   {items.length === 0 && (
-    <p className="text-gray-400 italic">No items added yet.</p>
+    <p className="text-slate-500 italic">No items added yet.</p>
   )}
 
   {/* DESKTOP VERSION */}
@@ -287,24 +287,24 @@ if (Object.keys(newErrors).length > 0) {
         <button
           type="button"
           onClick={addItem}
-          className="px-6 py-3 rounded-xl bg-white/10 border border-white/20 
-          backdrop-blur-xl hover:bg-amber-600 hover:text-black 
+          className="px-6 py-3 rounded-xl bg-white border border-slate-200
+           hover:bg-teal-700 hover:text-white
           transition-all duration-300 shadow-md"
         >
           + Add Item
         </button>
 
         {/* TOTAL */}
-        <div className="mt-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-amber-400">Total Amount</h3>
-          <p className="text-3xl font-extrabold text-amber-500 mt-2">
+        <div className="mt-10 bg-white  border border-slate-200 rounded-xl p-6">
+          <h3 className="text-xl font-bold text-teal-600">Total Amount</h3>
+          <p className="text-3xl font-bold text-teal-700 mt-2">
             ₦{invoiceTotal.toLocaleString()}
           </p>
         </div>
 
         {/* DEPOSIT */}
-         <div className="mt-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6">
-           <h3 className="text-xl font-bold text-amber-400 mb-2">Deposit</h3>
+         <div className="mt-6 bg-white  border border-slate-200 rounded-xl p-6">
+           <h3 className="text-xl font-bold text-teal-600 mb-2">Deposit</h3>
 
              <input
                 type="number"
@@ -314,42 +314,42 @@ if (Object.keys(newErrors).length > 0) {
                 }}
                 placeholder="Enter deposit amount"
                 disabled={status === "Paid"}
-                className={`w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg 
-                border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-600 
-              placeholder-gray-400 text-white 
-               ${errors.deposit ? "border-red-500" : "border-white/20"} 
+                className={`w-full px-4 py-3 rounded-xl bg-white
+                border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-700
+              placeholder-gray-400 text-slate-900
+               ${errors.deposit ? "border-red-500" : "border-slate-200"}
               disabled:opacity-50 disabled:cursor-not-allowed`}
              />
              {errors.deposit && (
-               <p className="text-red-400 text-sm mt-2">
+               <p className="text-red-600 text-sm mt-2">
                  {errors.deposit}
               </p>
             )}
 
             {status === "Paid" && (
-              <p className="text-green-400 text-sm mt-2">
+              <p className="text-emerald-700 text-sm mt-2">
                 Invoice is marked as paid — deposit locked
               </p>
       )}
            </div>
 
            {/* BALANCE */}
-            <div className="mt-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6">
-             <h3 className="text-xl font-bold text-amber-400">Balance</h3>
+            <div className="mt-6 bg-white  border border-slate-200 rounded-xl p-6">
+             <h3 className="text-xl font-bold text-teal-600">Balance</h3>
 
-            <p className="text-3xl font-extrabold text-amber-500 mt-2">
+            <p className="text-3xl font-bold text-teal-700 mt-2">
                ₦{balance > 0 ? balance.toLocaleString() : "0"}
             </p>
           </div>
 
         {/* STATUS */}
         <div className="mb-6 mt-6">
-          <label className="block mb-2 text-sm text-gray-300">Status</label>
+          <label className="block mb-2 text-sm text-slate-600">Status</label>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 
-            focus:border-amber-600 outline-none text-white"
+            className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200
+            focus:border-teal-700 outline-none text-slate-900"
           >
             <option value="Pending">Pending</option>
             <option value="Paid">Paid</option>
@@ -362,13 +362,13 @@ if (Object.keys(newErrors).length > 0) {
           <button
        type="submit"
       disabled={isSubmitting}
-       className="px-8 py-4 rounded-xl bg-amber-600/30 border border-amber-500/30 
-       backdrop-blur-xl hover:bg-amber-600 hover:text-black 
-       transition-all duration-300 shadow-xl font-semibold text-lg"
+       className="px-8 py-4 rounded-xl bg-teal-700/30 border border-teal-700/30
+        hover:bg-teal-700 hover:text-white
+       transition-all duration-300 shadow-sm font-semibold text-lg"
         >
        {isSubmitting ? "Saving..." : "Save Invoice"}
       </button>
-    
+
         </div>
       </form>
     </div>

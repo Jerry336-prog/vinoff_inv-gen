@@ -13,7 +13,7 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
   const [search, setSearch] = useState("");
   const [showDelete, setShowDelete] = useState(false);
   // const { id } = useParams();
-  const customerName = customers?.name || ""; 
+  const customerName = customers?.name || "";
 
 
   // Fetch customers from Firestore
@@ -50,27 +50,27 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center text-slate-900">
         Loading customers...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white p-6 md:p-10">
+    <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-10">
       <div className="max-w-5xl mx-auto">
 
         {/* HEADER */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-amber-500">
+          <h1 className="text-3xl md:text-4xl font-bold text-teal-700">
             Customers
           </h1>
 
           <Link
             to="/customercreate"
-            className="px-5 py-3 rounded-xl bg-amber-600/30 
-            border border-amber-500/30 backdrop-blur-lg shadow-lg 
-            hover:bg-amber-500 hover:text-black transition-all duration-300"
+            className="px-5 py-3 rounded-xl bg-teal-700/30
+            border border-teal-700/30  shadow-lg
+            hover:bg-teal-700 hover:text-white transition-all duration-300"
           >
             + Add Customer
           </Link>
@@ -83,20 +83,20 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
             placeholder="Search customers..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white/10 
-            border border-white/20 backdrop-blur-xl 
-            placeholder-gray-400 text-white
-            focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="w-full px-4 py-3 rounded-xl bg-white
+            border border-slate-200
+            placeholder-gray-400 text-slate-900
+            focus:outline-none focus:ring-2 focus:ring-teal-700"
           />
         </div>
 
         {/* TABLE */}
         <div
-          className="bg-white/10 border border-white/20 backdrop-blur-xl 
-          rounded-3xl shadow-2xl overflow-hidden"
+          className="bg-white border border-slate-200
+          rounded-3xl shadow-sm overflow-hidden"
         >
           <table className="w-full text-left">
-            <thead className="bg-white/5 text-gray-300">
+            <thead className="bg-slate-50 text-slate-600">
               <tr className="text-sm uppercase tracking-wide">
                 <th className="p-4">Name</th>
                 <th className="p-4">Email</th>
@@ -108,7 +108,7 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
             <tbody>
               {filteredCustomers.length === 0 && (
                 <tr>
-                  <td colSpan="4" className="text-center p-6 text-gray-400">
+                  <td colSpan="4" className="text-center p-6 text-slate-500">
                     No customers found
                   </td>
                 </tr>
@@ -117,7 +117,7 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
               {filteredCustomers.map((cust) => (
                 <tr
                   key={cust.id}
-                  className="border-b border-white/10 hover:bg-white/10 transition"
+                  className="border-b border-slate-200 hover:bg-white transition"
                 >
                   <td className="p-4">{cust.name}</td>
                   <td className="p-4">{cust.email}</td>
@@ -128,8 +128,8 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
                     {/* VIEW */}
                     <Link
                       to={`/customerdetail/${cust.id}`}
-                      className="px-3 py-2 rounded-lg bg-amber-600/30 border border-amber-500/30 
-                      backdrop-blur-lg hover:bg-amber-500 hover:text-black transition-all duration-300"
+                      className="px-3 py-2 rounded-lg bg-teal-700/30 border border-teal-700/30
+                       hover:bg-teal-700 hover:text-white transition-all duration-300"
                     >
                       View
                     </Link>
@@ -137,8 +137,8 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
                     {/* EDIT */}
                     <Link
                       to={`/customeredit/${cust.id}`}
-                      className="px-3 py-2 rounded-lg bg-blue-600/20 border border-blue-500/30 
-                      backdrop-blur-lg hover:bg-blue-500 hover:text-black transition-all duration-300"
+                      className="px-3 py-2 rounded-lg bg-blue-600/20 border border-blue-500/30
+                       hover:bg-blue-500 hover:text-white transition-all duration-300"
                     >
                       Edit
                     </Link>
@@ -150,8 +150,8 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
                               setSelectedCustomerName(cust.name);
                               setShowDelete(true);
                        }}
-                      className="px-3 py-2 rounded-lg bg-red-600/20 border border-red-500/30 
-                      backdrop-blur-lg hover:bg-red-500 hover:text-black transition-all duration-300"
+                      className="px-3 py-2 rounded-lg bg-red-600/20 border border-red-500/30
+                       hover:bg-red-500 hover:text-white transition-all duration-300"
                     >
                       Delete
                     </button>
@@ -161,7 +161,7 @@ const [selectedCustomerName, setSelectedCustomerName] = useState("");
               ))}
             </tbody>
           </table>
-          
+
         </div>
 
       </div>

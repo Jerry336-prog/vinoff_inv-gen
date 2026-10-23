@@ -8,19 +8,19 @@ import {
 } from "firebase/firestore";
 import { db } from "../../utilis/Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Sidebar from "../../components/layout/Sidebar";
-import Topbar from "../../components/layout/Topbar";
+import MainLayout from "../../layouts/MainLayout";
+
 
 export default function Dashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const [invoices, setInvoices] = useState([]);
   const [filteredInvoices, setFilteredInvoices] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  const closeSidebar = () => setSidebarOpen(false);
+
+
 
   const auth = getAuth();
 
@@ -88,39 +88,15 @@ export default function Dashboard() {
   const recentInvoices = filteredInvoices.slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-slate-900 flex">
-
-      {/* MOBILE SIDEBAR */}
-      {sidebarOpen && (
-        <aside className="fixed top-0 left-0 h-full w-64 bg-white/10 backdrop-blur-xl border-r border-white/20 p-6 md:hidden z-50">
-          <button
-            className="text-white mb-6 text-lg bg-white/10 px-3 py-1 rounded-lg"
-            onClick={closeSidebar}
-          >
-            ☓
-          </button>
-
-          <Sidebar />
-        </aside>
-      )}
-
-      {/* DESKTOP SIDEBAR */}
-      <aside className="hidden md:block w-64 bg-white/10 backdrop-blur-xl border-r border-white/20 pt-26 p-6">
-        <Sidebar />
-      </aside>
-
-      {/* MAIN */}
-      <div className="flex-1 p-8 relative">
-        <Topbar toggleSidebar={toggleSidebar} />
-        <div className="h-24"></div>
-
+    <MainLayout>
+      <div className="dashboard-page">
         {/* Welcome */}
         <div className="mb-10">
-          <h2 className="text-4xl font-extrabold text-white">
-            Welcome Back 👋
+          <h2 className="text-4xl font-bold text-slate-900">
+            Your business, at a glance.
           </h2>
-          <p className="text-gray-400 mt-2">
-            Here's your live invoice activity.
+          <p className="text-slate-500 mt-2">
+            Keep an eye on your invoices and stay on top of what’s next.
           </p>
         </div>
 
@@ -131,37 +107,37 @@ export default function Dashboard() {
             placeholder="Search by client or invoice ID..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full md:w-1/3 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 backdrop-blur-xl"
+            className="w-full md:w-1/3 px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 "
           />
         </div>
 
         {/* STATS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
 
-          <div className="p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl">
-            <h3 className="text-gray-300">Total Invoices</h3>
-            <p className="text-4xl font-bold text-amber-600 mt-2">
+          <div className="p-6 bg-white  border border-slate-200 rounded-2xl shadow-sm">
+            <h3 className="text-slate-600">Total Invoices</h3>
+            <p className="text-4xl font-bold text-teal-700 mt-2">
               {loading ? "..." : totalInvoices}
             </p>
           </div>
 
-          <div className="p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl">
-            <h3 className="text-gray-300">Paid Invoices</h3>
-            <p className="text-4xl font-bold text-green-500 mt-2">
+          <div className="p-6 bg-white  border border-slate-200 rounded-2xl shadow-sm">
+            <h3 className="text-slate-600">Paid Invoices</h3>
+            <p className="text-4xl font-bold text-emerald-700 mt-2">
               {loading ? "..." : paidInvoices}
             </p>
           </div>
 
-          <div className="p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl">
-            <h3 className="text-gray-300">Pending</h3>
-            <p className="text-4xl font-bold text-yellow-400 mt-2">
+          <div className="p-6 bg-white  border border-slate-200 rounded-2xl shadow-sm">
+            <h3 className="text-slate-600">Pending</h3>
+            <p className="text-4xl font-bold text-amber-700 mt-2">
               {loading ? "..." : pendingInvoices}
             </p>
           </div>
 
-            <div className="p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl">
-            <h3 className="text-gray-300">Overdue</h3>
-            <p className="text-4xl font-bold text-red-400 mt-2">
+            <div className="p-6 bg-white  border border-slate-200 rounded-2xl shadow-sm">
+            <h3 className="text-slate-600">Overdue</h3>
+            <p className="text-4xl font-bold text-red-600 mt-2">
               {loading ? "..." : overdueInvoices}
             </p>
           </div>
@@ -169,22 +145,22 @@ export default function Dashboard() {
         </div>
 
         {/* RECENT INVOICES */}
-       <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 md:p-8 shadow-xl">
-  <h2 className="text-2xl font-bold text-white mb-6">
+       <div className="bg-white  border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
+  <h2 className="text-2xl font-bold text-slate-900 mb-6">
     Recent Invoices
   </h2>
 
   {loading ? (
-    <p className="text-gray-400">Loading...</p>
+    <p className="text-slate-500">Loading...</p>
   ) : recentInvoices.length === 0 ? (
-    <p className="text-gray-400">No invoices found.</p>
+    <p className="text-slate-500">No invoices found.</p>
   ) : (
     <>
       {/* DESKTOP TABLE */}
       <div className="hidden md:block overflow-x-auto">
-        <table className="w-full text-gray-300">
+        <table className="w-full text-slate-600">
           <thead>
-            <tr className="text-left border-b border-white/20">
+            <tr className="text-left border-b border-slate-200">
               <th className="py-3">Invoice ID</th>
               <th className="py-3">Client</th>
               <th className="py-3">Amount</th>
@@ -196,7 +172,7 @@ export default function Dashboard() {
             {recentInvoices.map((inv) => (
               <tr
                 key={inv.id}
-                className="border-b border-white/10 hover:bg-white/5 transition"
+                className="border-b border-slate-200 hover:bg-slate-50 transition"
               >
                 <td className="py-4">{inv.id}</td>
                 <td>{inv.client}</td>
@@ -205,10 +181,10 @@ export default function Dashboard() {
                 <td
                   className={
                     inv.status === "Paid"
-                      ? "text-green-400"
+                      ? "text-emerald-700"
                       : inv.status === "Pending"
-                      ? "text-yellow-400"
-                      : "text-red-400"
+                      ? "text-amber-700"
+                      : "text-red-600"
                   }
                 >
                   {inv.status}
@@ -224,35 +200,35 @@ export default function Dashboard() {
         {recentInvoices.map((inv) => (
           <div
             key={inv.id}
-            className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-lg"
+            className="bg-slate-50 border border-slate-200 rounded-xl p-4 "
           >
             <div className="flex justify-between mb-2">
-              <span className="text-gray-300 text-sm">Invoice ID</span>
-              <span className=" text-gray-300  font-semibold">{inv.id}</span>
+              <span className="text-slate-600 text-sm">Invoice ID</span>
+              <span className=" text-slate-600  font-semibold">{inv.id}</span>
             </div>
 
             <div className="flex justify-between mb-2">
-              <span className="text-gray-300 text-sm">Client</span>
-              <span className=" text-gray-300  font-semibold">{inv.client}</span>
+              <span className="text-slate-600 text-sm">Client</span>
+              <span className=" text-slate-600  font-semibold">{inv.client}</span>
             </div>
 
             <div className="flex justify-between mb-2">
-              <span className="text-gray-300 text-sm">Amount</span>
-              <span className="text-amber-400 font-bold">
+              <span className="text-slate-600 text-sm">Amount</span>
+              <span className="text-teal-600 font-bold">
                 ₦{inv.amount?.toLocaleString() || 0}
               </span>
             </div>
 
             <div className="flex justify-between">
-              <span className="text-gray-400 text-sm">Status</span>
+              <span className="text-slate-500 text-sm">Status</span>
 
               <span
                 className={
                   inv.status === "Paid"
-                    ? "text-green-400 font-semibold"
+                    ? "text-emerald-700 font-semibold"
                     : inv.status === "Pending"
-                    ? "text-yellow-400 font-semibold"
-                    : "text-red-400 font-semibold"
+                    ? "text-amber-700 font-semibold"
+                    : "text-red-600 font-semibold"
                 }
               >
                 {inv.status}
@@ -266,6 +242,6 @@ export default function Dashboard() {
 </div>
 
       </div>
-    </div>
+    </MainLayout>
   );
 }

@@ -1,3 +1,4 @@
+import AuthLayout from "../../layouts/AuthLayout";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { confirmPasswordReset } from "firebase/auth";
@@ -50,12 +51,12 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 p-6 relative">
-      <div className="w-full max-w-md p-10 rounded-2xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-2xl animate-fadeIn">
-        <h1 className="text-4xl font-extrabold text-amber-600 text-center drop-shadow-lg">
+    <AuthLayout>
+      <div className="w-full max-w-md p-10 rounded-2xl  bg-white border border-slate-200 shadow-sm ">
+        <h1 className="text-4xl font-bold text-teal-700 text-center ">
           Reset Password
         </h1>
-        <p className="text-gray-300 text-center mt-2">
+        <p className="text-slate-600 text-center mt-2">
           Enter your new password to continue
         </p>
 
@@ -67,7 +68,7 @@ export default function ResetPassword() {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               required
-              className="w-full px-4 py-3 mt-1 rounded-xl bg-white/5 text-white border border-white/20 backdrop-blur-md focus:outline-none focus:border-amber-600 placeholder-gray-400"
+              className="w-full px-4 py-3 mt-1 rounded-xl bg-slate-50 text-slate-900 border border-slate-200  focus:outline-none focus:border-teal-700 placeholder-gray-400"
             />
             <input
               type="password"
@@ -75,11 +76,11 @@ export default function ResetPassword() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              className="w-full px-4 py-3 mt-1 rounded-xl bg-white/5 text-white border border-white/20 backdrop-blur-md focus:outline-none focus:border-amber-600 placeholder-gray-400"
+              className="w-full px-4 py-3 mt-1 rounded-xl bg-slate-50 text-slate-900 border border-slate-200  focus:outline-none focus:border-teal-700 placeholder-gray-400"
             />
             <button
               type="submit"
-              className="w-full py-3 rounded-xl font-semibold text-lg backdrop-blur-lg bg-white/10 text-white border border-white/20 shadow-xl transition-all duration-300 hover:bg-amber-600 hover:text-black hover:border-amber-700"
+              className="w-full py-3 rounded-xl font-semibold text-lg  bg-white text-slate-900 border border-slate-200 shadow-sm transition-all duration-300 hover:bg-teal-700 hover:text-white hover:border-teal-800"
             >
               Reset Password
             </button>
@@ -92,11 +93,11 @@ export default function ResetPassword() {
           </p>
         )}
 
-        <p className="mt-6 text-center text-gray-300">
+        <p className="mt-6 text-center text-slate-600">
           Remember your password?{" "}
           <Link
             to="/login"
-            className="text-amber-600 hover:underline font-semibold"
+            className="text-teal-700 hover:underline font-semibold"
           >
             Login
           </Link>
@@ -106,12 +107,12 @@ export default function ResetPassword() {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white/10 backdrop-blur-2xl border border-white/20 p-6 rounded-2xl w-11/12 max-w-sm text-center shadow-2xl">
-            <h2 className="text-amber-600 font-bold text-xl mb-4">Notification</h2>
-            <p className="text-white mb-6">{modalMessage}</p>
+          <div className="bg-white  border border-slate-200 p-6 rounded-2xl w-11/12 max-w-sm text-center shadow-sm">
+            <h2 className="text-teal-700 font-bold text-xl mb-4">Notification</h2>
+            <p className="text-slate-900 mb-6">{modalMessage}</p>
             <button
               onClick={() => setShowModal(false)}
-              className="px-6 py-2 rounded-xl backdrop-blur-lg bg-white/10 text-white border border-white/20 shadow-xl transition-all duration-300 hover:bg-amber-600 hover:text-black hover:border-amber-700"
+              className="px-6 py-2 rounded-xl  bg-white text-slate-900 border border-slate-200 shadow-sm transition-all duration-300 hover:bg-teal-700 hover:text-white hover:border-teal-800"
             >
               Close
             </button>
@@ -125,9 +126,9 @@ export default function ResetPassword() {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
           }
-          .animate-fadeIn { animation: fadeIn 0.9s ease-out forwards; }
+          . { animation: fadeIn 0.9s ease-out forwards; }
         `}
       </style>
-    </div>
+    </AuthLayout>
   );
 }

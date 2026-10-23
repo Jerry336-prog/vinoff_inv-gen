@@ -11,17 +11,17 @@ export default function InvoiceDeleteModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
       {/* Modal */}
-      <div className="bg-white/10 border border-white/20 backdrop-blur-2xl rounded-2xl shadow-2xl p-8 w-full max-w-md animate-fadeIn">
-        
+      <div className="bg-white border border-slate-200  rounded-2xl shadow-sm p-8 w-full max-w-md animate-fadeIn">
+
         {/* Title */}
-        <h2 className="text-2xl font-bold text-[#b8860b] text-center mb-4">
+        <h2 className="text-2xl font-bold text-teal-700 text-center mb-4">
           Delete Invoice
         </h2>
 
         {/* Message */}
-        <p className="text-gray-300 text-center mb-6">
+        <p className="text-slate-600 text-center mb-6">
           Are you sure you want to delete invoice{" "}
-          <span className="text-[#b8860b] font-semibold">#{invoiceId}</span>?{" "}
+          <span className="text-teal-700 font-semibold">#{invoiceId}</span>?{" "}
           This action cannot be undone.
         </p>
 
@@ -30,7 +30,7 @@ export default function InvoiceDeleteModal({
           {/* Cancel */}
           <button
             onClick={onClose}
-            className="px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-white backdrop-blur-lg hover:bg-white/20 transition"
+            className="px-6 py-3 rounded-xl bg-white border border-slate-200 text-slate-900  hover:bg-slate-100 transition"
           >
             Cancel
           </button>
@@ -38,7 +38,7 @@ export default function InvoiceDeleteModal({
           {/* Delete */}
           <button
             onClick={onConfirm}
-            className="px-6 py-3 rounded-xl bg-red-600/30 border border-red-600/40 text-red-400 backdrop-blur-lg hover:bg-red-600/50 transition font-semibold"
+            className="px-6 py-3 rounded-xl bg-red-600/30 border border-red-600/40 text-red-600  hover:bg-red-600/50 transition font-semibold"
           >
             Delete
           </button>

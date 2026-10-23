@@ -1,0 +1,5 @@
+import { Link } from "react-router-dom";
+import { FileText, Check, ArrowLeft } from "lucide-react";
+export default function AuthLayout({ children }) {
+ return <div className="auth-layout"><aside className="auth-story"><Link to="/" className="brand"><span className="brand-icon"><FileText size={22}/></span>vinoff.</Link><div><span className="eyebrow">A LITTLE LESS PAPERWORK</span><h2>Good work deserves<br/>a great invoice.</h2><p>A simpler way to create, share, and keep track of your invoices. So you can get back to what you do best.</p>{['Professional invoices in minutes', 'All your invoice activity in one place', 'Easy sharing and PDF downloads'].map(text => <div className="auth-benefit" key={text}><Check size={18}/>{text}</div>)}</div><span className="text-sm text-slate-500">Made for independent businesses.</span></aside><main className="auth-main"><Link to="/" className="back-link"><ArrowLeft size={16}/> Back to home</Link>{children}<p className="auth-footer">© {new Date().getFullYear()} Vinoff</p></main></div>;
+}

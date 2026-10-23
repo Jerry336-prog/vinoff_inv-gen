@@ -83,8 +83,8 @@ const [balance, setBalance] = useState(0);
   // LOADING SCREEN
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-        <p className="text-xl text-gray-300">Loading invoice...</p>
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-900">
+        <p className="text-xl text-slate-600">Loading invoice...</p>
       </div>
     );
   }
@@ -92,9 +92,9 @@ const [balance, setBalance] = useState(0);
   // NOT FOUND SCREEN
   if (notFound) {
     return (
-      <div className="min-h-screen p-8 bg-slate-900 text-white">
-        <h1 className="text-2xl text-red-400">Invoice not found</h1>
-        <Link to="/invoicelist" className="underline text-amber-500">
+      <div className="min-h-screen p-8 bg-slate-50 text-slate-900">
+        <h1 className="text-2xl text-red-600">Invoice not found</h1>
+        <Link to="/invoicelist" className="underline text-teal-700">
           Go Back
         </Link>
       </div>
@@ -141,33 +141,33 @@ const [balance, setBalance] = useState(0);
   };
 
   return (
-    <div className="min-h-screen p-6 md:p-10 bg-slate-900 text-white">
+    <div className="min-h-screen p-6 md:p-10 bg-slate-50 text-slate-900">
       {/* PAGE HEADER */}
       <div className="flex justify-between items-center mb-10">
-        <h1 className="lg:text-4xl font-extrabold text-xl text-amber-600 drop-shadow-lg">
+        <h1 className="lg:text-4xl font-bold text-xl text-teal-700 ">
           Edit Invoice: {id}
         </h1>
 
         <Link
           to="/invoicelist"
-          className="px-3 py-1 rounded-xl bg-white/10 border border-white/20 
-          backdrop-blur-lg hover:bg-amber-600 hover:text-black 
-          transition-all duration-300 shadow-xl"
+          className="px-3 py-1 rounded-xl bg-white border border-slate-200
+           hover:bg-teal-700 hover:text-white
+          transition-all duration-300 shadow-sm"
         >
-          ← 
+          ←
         </Link>
       </div>
 
       {/* FORM WRAPPER */}
       <form
         onSubmit={handleSubmit}
-        className="bg-white/10 backdrop-blur-xl border border-white/20 
-        rounded-2xl p-6 md:p-10 shadow-xl"
+        className="bg-white  border border-slate-200
+        rounded-2xl p-6 md:p-10 shadow-sm"
       >
         {/* CLIENT & DATE FIELDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           <div>
-            <label className="text-gray-300 mb-2 block font-semibold">
+            <label className="text-slate-600 mb-2 block font-semibold">
               Client Name
             </label>
             <input
@@ -175,37 +175,37 @@ const [balance, setBalance] = useState(0);
               value={clientName}
               onChange={(e) => setClientName(e.target.value)}
               placeholder="Client name"
-              className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-lg
-                border border-white/20 focus:outline-none focus:ring-2
-                focus:ring-amber-600 placeholder-gray-400"
+              className="w-full px-4 py-3 rounded-xl bg-white
+                border border-slate-200 focus:outline-none focus:ring-2
+                focus:ring-teal-700 placeholder-gray-400"
             />
           </div>
 
           <div>
-            <label className="text-gray-300 mb-2 block font-semibold">
+            <label className="text-slate-600 mb-2 block font-semibold">
               Invoice Date
             </label>
             <input
               type="date"
               value={invoiceDate}
               onChange={(e) => setInvoiceDate(e.target.value)}
-              className="w-full px-2 py-3 rounded-xl bg-white/10 backdrop-blur-lg
-                border border-white/20 focus:outline-none focus:ring-2
-                focus:ring-amber-600 text-white"
+              className="w-full px-2 py-3 rounded-xl bg-white
+                border border-slate-200 focus:outline-none focus:ring-2
+                focus:ring-teal-700 text-slate-900"
             />
           </div>
         </div>
 
         {/* ITEMS SECTION */}
        {/* ITEMS SECTION */}
-<h2 className="text-2xl font-bold text-amber-500 mb-4">
+<h2 className="text-2xl font-bold text-teal-700 mb-4">
   Edit Invoice Items
 </h2>
 
 <div className="mb-8">
 
   {items.length === 0 && (
-    <p className="text-gray-400 italic">No items added.</p>
+    <p className="text-slate-500 italic">No items added.</p>
   )}
 
   {/* DESKTOP VERSION */}
@@ -239,60 +239,60 @@ const [balance, setBalance] = useState(0);
         <button
           type="button"
           onClick={addItem}
-          className="px-6 py-3 mb-6 rounded-xl bg-white/10 border border-white/20 
-          backdrop-blur-xl hover:bg-amber-600 hover:text-black transition-all duration-300 shadow-md"
+          className="px-6 py-3 mb-6 rounded-xl bg-white border border-slate-200
+           hover:bg-teal-700 hover:text-white transition-all duration-300 shadow-md"
         >
           + Add Item
         </button>
 
         {/* TOTAL AMOUNT */}
-        <div className="mt-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-amber-400">Total Amount</h3>
-          <p className="text-3xl font-extrabold text-amber-500 mt-2">
+        <div className="mt-6 bg-white  border border-slate-200 rounded-xl p-6">
+          <h3 className="text-xl font-bold text-teal-600">Total Amount</h3>
+          <p className="text-3xl font-bold text-teal-700 mt-2">
             ₦{total.toLocaleString()}
           </p>
         </div>
 
 {/* Deposit */}
 <div className="mt-6">
-  <label className="text-gray-300">Deposit</label>
+  <label className="text-slate-600">Deposit</label>
   <input
     type="number"
     value={deposit}
     onChange={(e) => setDeposit(Number(e.target.value))}
-    className="w-full p-3 rounded bg-white/10 border border-white/20"
+    className="w-full p-3 rounded bg-white border border-slate-200"
   />
 </div>
 
 <div className="mt-6">
-  <label className="text-gray-300">Balance</label>
+  <label className="text-slate-600">Balance</label>
   <input
     type="number"
     value={balance}
     readOnly
-    className="w-full p-3 rounded bg-white/10 border border-white/20 text-gray-200"
+    className="w-full p-3 rounded bg-white border border-slate-200 text-slate-600"
   />
 </div>
 
 {/* Prepared By */}
 <div className="mt-6">
-    <label className="text-gray-300">Prepared By</label>
+    <label className="text-slate-600">Prepared By</label>
   <input
     value={createdBy}
     onChange={(e) => setCreatedBy(e.target.value)}
-    className="w-full p-3 rounded bg-white/10 border border-white/20"
+    className="w-full p-3 rounded bg-white border border-slate-200"
   />
 </div>
 
 
         {/* STATUS */}
         <div className="mb-6 mt-6">
-          <label className="block mb-2 text-sm text-gray-300">Status</label>
+          <label className="block mb-2 text-sm text-slate-600">Status</label>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 
-            focus:border-amber-600 outline-none text-white"
+            className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200
+            focus:border-teal-700 outline-none text-slate-900"
           >
             <option value="Pending">Pending</option>
             <option value="Paid">Paid</option>
@@ -304,9 +304,9 @@ const [balance, setBalance] = useState(0);
         <div className="mt-10 flex justify-end">
           <button
             type="submit"
-            className="px-8 py-4 rounded-xl bg-amber-600/30 border border-amber-500/30 
-            backdrop-blur-xl hover:bg-amber-600 hover:text-black 
-            transition-all duration-300 shadow-xl font-semibold text-lg"
+            className="px-8 py-4 rounded-xl bg-teal-700/30 border border-teal-700/30
+             hover:bg-teal-700 hover:text-white
+            transition-all duration-300 shadow-sm font-semibold text-lg"
           >
             Save Changes
           </button>
